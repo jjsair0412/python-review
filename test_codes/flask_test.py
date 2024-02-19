@@ -23,11 +23,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    parameter_dict = request.args.to_dict()
-    if len(parameter_dict) == 0:
+    parameter_dict = request.args.to_dict() # 파라미터 받음
+    if len(parameter_dict) == 0: # 파라미터가 없다면 ..
         return 'No Parameter'
-    elif len(parameter_dict) > 0:
-        for _,value in parameter_dict.items():
+    elif len(parameter_dict) > 0: # 파라미터가 1개 이상이라면
+        # parameter_dict.items() 로 파라미터 받아옴, key=value 로 들어오기에 key,value로 받을 수 있음
+        for _,value in parameter_dict.items(): 
             try:
                 score_cal = cal(value)
                 return score_cal.calScore()
